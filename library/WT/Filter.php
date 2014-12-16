@@ -146,15 +146,15 @@ class WT_Filter {
 	/**
 	 * Format a block of text, using "Markdown".
 	 *
-	 * @param STRING $text
+	 * @param string $text
 	 *
 	 * @return string
 	 */
 	public static function markdown($text) {
-		$parser = new MarkdownExtra;
+		$parser                       = new MarkdownExtra;
 		$parser->empty_element_suffix = '>';
 		$parser->no_markup            = true;
-		$text = $parser->transform($text);
+		$text                         = $parser->transform($text);
 
 		// HTMLPurifier needs somewhere to write temporary files
 		$HTML_PURIFIER_CACHE_DIR = WT_DATA_DIR . 'html_purifier_cache';
@@ -285,7 +285,11 @@ class WT_Filter {
 	 *
 	 * @param string $variable
 	 *
+<<<<<<< HEAD
 	 * @return bool
+=======
+	 * @return boolean
+>>>>>>> upstream/master
 	 */
 	public static function getBool($variable) {
 		return (bool)filter_input(INPUT_GET, $variable, FILTER_VALIDATE_BOOLEAN);
@@ -294,12 +298,21 @@ class WT_Filter {
 	/**
 	 * Validate integer GET requests
 	 *
+<<<<<<< HEAD
 	 * @param string $variable
 	 * @param int    $min
 	 * @param int    $max
 	 * @param int    $default
 	 *
 	 * @return int
+=======
+	 * @param string  $variable
+	 * @param integer $min
+	 * @param integer $max
+	 * @param integer $default
+	 *
+	 * @return integer
+>>>>>>> upstream/master
 	 */
 	public static function getInteger($variable, $min=0, $max=PHP_INT_MAX, $default=0) {
 		return filter_input(INPUT_GET, $variable, FILTER_VALIDATE_INT, array('options'=>array('min_range'=>$min, 'max_range'=>$max, 'default'=>$default)));
@@ -360,7 +373,11 @@ class WT_Filter {
 	 *
 	 * @param string $variable
 	 *
+<<<<<<< HEAD
 	 * @return bool
+=======
+	 * @return boolean
+>>>>>>> upstream/master
 	 */
 	public static function postBool($variable) {
 		return (bool)filter_input(INPUT_POST, $variable, FILTER_VALIDATE_BOOLEAN);
@@ -369,12 +386,21 @@ class WT_Filter {
 	/**
 	 * Validate integer POST requests
 	 *
+<<<<<<< HEAD
 	 * @param string $variable
 	 * @param int    $min
 	 * @param int    $max
 	 * @param int    $default
 	 *
 	 * @return int
+=======
+	 * @param string  $variable
+	 * @param integer $min
+	 * @param integer $max
+	 * @param integer $default
+	 *
+	 * @return integer
+>>>>>>> upstream/master
 	 */
 	public static function postInteger($variable, $min=0, $max=PHP_INT_MAX, $default=0) {
 		return filter_input(INPUT_POST, $variable, FILTER_VALIDATE_INT, array('options'=>array('min_range'=>$min, 'max_range'=>$max, 'default'=>$default)));
@@ -448,7 +474,11 @@ class WT_Filter {
 	/**
 	 * Check that the POST request contains the CSRF token generated above.
 	 *
+<<<<<<< HEAD
 	 * @return bool
+=======
+	 * @return boolean
+>>>>>>> upstream/master
 	 */
 	public static function checkCsrf() {
 		if (WT_Filter::post('csrf') !== WT_Filter::getCsrfToken()) {

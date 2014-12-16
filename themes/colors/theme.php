@@ -5,7 +5,7 @@
 // Copyright (C) 2014 webtrees development team.
 //
 // Derived from PhpGedView
-// Copyright (C) 2010 PGV Development Team.  All rights reserved.
+// Copyright (C) 2010 PGV Development Team.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -28,24 +28,34 @@ if (!defined('WT_WEBTREES')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
-// Convert a menu into our theme-specific format
+/**
+ * Convert a menu into our theme-specific format
+ *
+ * @param WT_Menu $menu
+ *
+ * @return string
+ */
 function getMenuAsCustomList($menu) {
-		// Create an inert menu - to use as a label
-		$tmp=new WT_Menu(strip_tags($menu->label), '');
-		// Insert the label into the submenu
-		if (is_array($menu->submenus)) {
-			array_unshift($menu->submenus, $tmp);
-		} else {
-			$menu->addSubmenu($tmp);
-		}
-		// Neutralise the top-level menu
-		$menu->label='';
-		$menu->onclick='';
-		$menu->iconclass='';
-		return $menu->getMenuAsList();
+	// Create an inert menu - to use as a label
+	$tmp = new WT_Menu(strip_tags($menu->label), '');
+
+	// Insert the label into the submenu
+	$submenus = $menu->getSubmenus();
+	array_unshift($submenus, $tmp);
+	$menu->setSubmenus($submenus);
+
+	// Neutralise the top-level menu
+	$menu->setLabel('');
+	$menu->setOnclick('');
+
+	return $menu->getMenuAsList();
 }
 
-//-- print color theme sub type change dropdown box
+/**
+ * Print color theme sub type change dropdown box
+ *
+ * @return string
+ */
 function color_theme_dropdown() {
 	global $COLOR_THEME_LIST, $WT_SESSION, $subColor;
 	$menu=new WT_Menu(/* I18N: A colour scheme */ WT_I18N::translate('Palette'), '#', 'menu-color');
@@ -124,7 +134,7 @@ if (!array_key_exists($subColor, $COLOR_THEME_LIST)) {
 $theme_name = "colors"; /* I18N: Name of a theme. */ WT_I18N::translate('colors');
 
 // A version number in the path prevents browser-cache problems during upgrade
-define('WT_CSS_URL', WT_THEME_URL . 'css-1.6.0/');
+define('WT_CSS_URL', WT_THEME_URL . 'css-1.6.2/');
 
 $footerfile = WT_THEME_DIR . 'footer.php';
 $headerfile = WT_THEME_DIR . 'header.php';

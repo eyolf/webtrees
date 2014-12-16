@@ -5,7 +5,7 @@
 // Copyright (C) 2014 webtrees development team.
 //
 // Derived from PhpGedView
-// Copyright (C) 2002 to 2009 PGV Development Team.  All rights reserved.
+// Copyright (C) 2002 to 2009 PGV Development Team.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ echo
 	'<title>', WT_Filter::escapeHtml($title), '</title>',
 	header_links($META_DESCRIPTION, $META_ROBOTS, $META_GENERATOR, $LINK_CANONICAL),
 	'<link rel="icon" href="', WT_CSS_URL, 'favicon.png" type="image/png">',
-	'<link rel="stylesheet" href="', WT_THEME_URL, 'jquery-ui-1.10.3/jquery-ui-1.10.3.custom.css" type="text/css">',
+	'<link rel="stylesheet" href="', WT_THEME_URL, 'jquery-ui-1.11.2/jquery-ui.css" type="text/css">',
 	'<link rel="stylesheet" href="', WT_CSS_URL, 'css/colors.css" type="text/css">',
 	'<link rel="stylesheet" href="', WT_CSS_URL, 'css/',  $subColor,  '.css" type="text/css">';
 
@@ -80,7 +80,7 @@ if  ($view!='simple') { // Use "simple" headers for popup windows
 	echo
 	'<ul class="makeMenu">';
 
-	if (WT_USER_ID) {
+	if (Auth::check()) {
 		echo '<li><a href="edituser.php" class="link">', WT_Filter::escapeHtml(Auth::user()->getRealName()), '</a></li><li>', logout_link(), '</li>';
 		if (WT_USER_CAN_ACCEPT && exists_pending_change()) {
 			echo ' <li><a href="#" onclick="window.open(\'edit_changes.php\', \'_blank\', chan_window_specs); return false;" style="color:red;">', WT_I18N::translate('Pending changes'), '</a></li>';
